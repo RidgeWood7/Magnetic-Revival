@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/John/Scenes/MainLevel.unity
     guid: 5ab286ed1ed27d84d8a014bed623ddcb
+  - enabled: 1
+    path: Assets/John/Scenes/John Testing.unity
+    guid: 6071c16f237eedc4fbe4aa6b6caa5944
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
