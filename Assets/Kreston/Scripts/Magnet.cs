@@ -1,22 +1,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// NOTES: The Gizmos are not accurate when rotating a box
+
 public class Magnet : MonoBehaviour
 {
+
+    #region Variables
     public enum Polarity
     {
         Positive,
-        Negative
+        Negative,
+        Neutral
     }
-
-    #region Variables
     private Collider2D _col;
-    [SerializeField] private Polarity _polarity; // false = negative
-    [SerializeField] private string _targetTag = "magnet";
+    public Polarity _polarity;
     [SerializeField] private float _searchRadius;
     [SerializeField] private float _minStrength, _maxStrength;
     [SerializeField] private LayerMask _magnetLayer;
     private List<Vector2> _closestPoints = new();
+    [SerializeField] private Vector2 _boxSize;
+    [SerializeField] private Vector3 _castOffset;
     #endregion
 
     private void Awake()
@@ -31,15 +35,25 @@ public class Magnet : MonoBehaviour
 
     private void Update()
     {
+        #region Magnetism Dampening For Jumping
+        if (GetComponent<movement>().)
+        {
+            
+        }
+        #endregion
+
+
+        float currentRotationAngle = transform.eulerAngles.z;
+
         RaycastHit2D[] hitColliders = new RaycastHit2D[0];
         
         if (_col is BoxCollider2D box)
         {
-            hitColliders = Physics2D.BoxCastAll(transform.position, box.size * transform.localScale * _searchRadius, 0, Vector2.zero, 0, _magnetLayer);
+            hitColliders = Physics2D.BoxCastAll(transform.position + _castOffset, _boxSize * transform.localScale * _searchRadius, currentRotationAngle, Vector2.zero, 0, _magnetLayer);
         }
         else if (_col is CircleCollider2D circle)
         {
-            hitColliders = Physics2D.CircleCastAll(transform.position, circle.radius * transform.localScale.magnitude * _searchRadius, Vector2.zero, 0, _magnetLayer);
+            hitColliders = Physics2D.CircleCastAll(transform.position + _castOffset, circle.radius * transform.localScale.magnitude * _searchRadius, Vector2.zero, 0, _magnetLayer);
         }
 
         _closestPoints.Clear();
@@ -48,8 +62,8 @@ public class Magnet : MonoBehaviour
         {
             float directionMult = 0;
 
-            if (hit.collider.TryGetComponent(out Magnetism magnetism))
-                directionMult = magnetism.objPolarity == _polarity ? 1 : -1;
+            if (hit.collider.TryGetComponent(out global::Polarity polarity))
+                directionMult = polarity.objPolarity == _polarity ? 1 : -1;
 
             Vector3 closestPoint = _col.ClosestPoint(hit.transform.position);
             _closestPoints.Add(closestPoint);
@@ -65,11 +79,11 @@ public class Magnet : MonoBehaviour
     {
         if (_col is BoxCollider2D box)
         {
-            Gizmos.DrawWireCube(transform.position, box.size * transform.localScale * _searchRadius);
+            Gizmos.DrawWireCube(transform.position + _castOffset, _boxSize * transform.localScale * _searchRadius);
         }
         else if (_col is CircleCollider2D circle)
         {
-            Gizmos.DrawWireSphere(transform.position, circle.radius * transform.localScale.magnitude * _searchRadius);
+            Gizmos.DrawWireSphere(transform.position + _castOffset, circle.radius * transform.localScale.magnitude * _searchRadius);
         }
 
         foreach (var point in _closestPoints)
