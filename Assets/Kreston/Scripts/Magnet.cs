@@ -36,7 +36,7 @@ public class Magnet : MonoBehaviour
     private void Update()
     {
         #region Magnetism Dampening For Jumping
-        if (GetComponent<movement>().)
+        if (GetComponent<movement>())
         {
             
         }

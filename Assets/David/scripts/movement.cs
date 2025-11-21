@@ -67,4 +67,21 @@ public class movement : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(transform.position + Vector3.down * castDistance, boxsize);
     }
+
+
+
+    public void SavePlayer()
+    {
+        saveSystem.SavePlayer(this);
+    }
+
+    public void loadPlayer(Vector3 position)
+    {
+        playerData data = saveSystem.loadPlayer();
+
+        
+        position.x = data.position[0];
+        position.y = data.position[1];
+        transform.position = position;
+    }
 }
