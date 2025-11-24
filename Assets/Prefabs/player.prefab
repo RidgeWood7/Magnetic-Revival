@@ -14,7 +14,9 @@ GameObject:
   - component: {fileID: 2199840133641599932}
   - component: {fileID: 384172473847662292}
   - component: {fileID: 8771054212984969413}
-  m_Layer: 7
+  - component: {fileID: -2359939588474284519}
+  - component: {fileID: 1492181011627320303}
+  m_Layer: 8
   m_Name: player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -314,3 +316,37 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &-2359939588474284519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5187527464672725322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00abdef562cb8d04fbe0b07440b6c279, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _polarity: 2
+  _searchRadius: 4
+  _minStrength: 3
+  _maxStrength: 8
+  _magnetLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  _boxSize: {x: 1, y: 1}
+  _castOffset: {x: 0, y: 0, z: 0}
+--- !u!114 &1492181011627320303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5187527464672725322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92d5add7ae5367b4cb43d73b41d13840, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objPolarity: 2

@@ -11,7 +11,7 @@ public class playerData
     public playerData(movement player)
     {
         position = new float[2];
-        position[0] = player.transform.position.x; 
-        position[0] = player.transform.position.y; 
+        position[0] = player.transform.position.x;
+        position[1] = player.transform.position.y;
     }
 }
