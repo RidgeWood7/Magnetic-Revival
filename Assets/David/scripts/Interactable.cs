@@ -2,15 +2,17 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void Update()
     {
-        
+                   
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (CompareTag("Player"))
+        {
+            Debug.Log("in range");
+        }
+
     }
-}
+} 

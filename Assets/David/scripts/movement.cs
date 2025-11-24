@@ -20,14 +20,13 @@ public class movement : MonoBehaviour
 
     public GameObject playerObj;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Awake()
     {
         Rb = GetComponent<Rigidbody2D>();
+ 
     }
+  
 
-    // Update is called once per frame
     void Update()
     {
         Rb.linearVelocityX = _movement;
@@ -73,15 +72,24 @@ public class movement : MonoBehaviour
     public void SavePlayer()
     {
         saveSystem.SavePlayer(this);
-    }
+        Debug.Log("saving...");
 
-    public void loadPlayer(Vector3 position)
+
+    }
+    public void loadPlayer()
     {
+
         playerData data = saveSystem.loadPlayer();
 
-        
+        Vector2 position;
+
         position.x = data.position[0];
         position.y = data.position[1];
         transform.position = position;
+        Debug.Log("loading...");
     }
+    
 }
+
+
+
