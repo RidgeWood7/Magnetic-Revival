@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Magnet : MonoBehaviour
 {
-
     #region Variables
     public enum Polarity
     {
@@ -64,8 +63,10 @@ public class Magnet : MonoBehaviour
 
             if (hit.collider.TryGetComponent(out global::Polarity polarity))
                 directionMult = polarity.objPolarity == _polarity ? 1 : -1;
+            else
+                return;
 
-            Vector3 closestPoint = _col.ClosestPoint(hit.transform.position);
+                Vector3 closestPoint = _col.ClosestPoint(hit.transform.position);
             _closestPoints.Add(closestPoint);
 
             float dist = Vector2.Distance(hit.transform.position, closestPoint);
