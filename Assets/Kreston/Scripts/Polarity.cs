@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Magnetism : MonoBehaviour
+public class Polarity : MonoBehaviour
 {
     public Magnet.Polarity objPolarity;
 }
