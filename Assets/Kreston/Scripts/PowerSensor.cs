@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PowerSensor : MonoBehaviour
 {
+    public UnityEvent Powering;
     #region Variables
     private bool _isActive;
     private bool _isLockedOn;
     #endregion
-
     #region List of Objs
     [SerializeField] private List<GameObject> _objs;
     #endregion
@@ -42,6 +43,8 @@ public class PowerSensor : MonoBehaviour
                 obj.SetActive(true);
                 yield return new WaitForSeconds(.25f);
             }
+            _isLockedOn = true;
+            Powering.Invoke();
         }
         else if (!_isLockedOn)
         {
@@ -50,13 +53,6 @@ public class PowerSensor : MonoBehaviour
                 StopAllCoroutines();
                 obj.SetActive(false);
             }
-
-            //yield return new WaitForSeconds(1f);
-
-            //if (!_isActive)
-            //{
-                
-            //}
         }
     }
     #endregion

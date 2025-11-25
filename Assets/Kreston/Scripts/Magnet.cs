@@ -14,11 +14,11 @@ public class Magnet : MonoBehaviour
     }
     private Collider2D _col;
     public Polarity _polarity;
-    [SerializeField] private float _searchRadius;
+    public float _searchRadius;
     [SerializeField] private float _minStrength, _maxStrength;
     [SerializeField] private LayerMask _magnetLayer;
     private List<Vector2> _closestPoints = new();
-    [SerializeField] private Vector2 _boxSize;
+    public Vector2 _boxSize;
     [SerializeField] private Vector3 _castOffset;
     #endregion
 
@@ -35,10 +35,12 @@ public class Magnet : MonoBehaviour
     private void Update()
     {
         RaycastHit2D[] hitColliders = new RaycastHit2D[0];
-        
+
         // Sees what type of collider it is hitting [box : circle]
         if (_col is BoxCollider2D box)
+        {
             hitColliders = Physics2D.BoxCastAll(transform.position + _castOffset, _boxSize * transform.localScale * _searchRadius, transform.eulerAngles.z, Vector2.zero, 0, _magnetLayer);
+        }
         else if (_col is CircleCollider2D circle)
             hitColliders = Physics2D.CircleCastAll(transform.position + _castOffset, circle.radius * transform.localScale.magnitude * _searchRadius, Vector2.zero, 0, _magnetLayer);
 
