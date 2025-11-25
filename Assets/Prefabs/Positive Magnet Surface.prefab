@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00abdef562cb8d04fbe0b07440b6c279, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _polarity: 0
+  _polarity: 1
   _searchRadius: 1
   _minStrength: 4
   _maxStrength: 20

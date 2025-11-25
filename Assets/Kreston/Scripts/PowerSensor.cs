@@ -1,16 +1,63 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class PowerSensor : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    #region Variables
+    private bool _isActive;
+    private bool _isLockedOn;
+    #endregion
 
-    // Update is called once per frame
-    void Update()
+    #region List of Objs
+    [SerializeField] private List<GameObject> _objs;
+    #endregion
+
+    // Functions
+    #region OnCollision Enter/Exit
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        Magnet magScript = collision.gameObject.GetComponent<Magnet>();
+
+        if (magScript != null && magScript._polarity != Magnet.Polarity.Neutral)
+            _isActive = true;
     }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        _isActive = false;
+    }
+    #endregion
+    #region Chain Reaction (update)
+    private void Update()
+    {
+        StartCoroutine(ChainReaction());
+    }
+    IEnumerator ChainReaction()
+    {
+        if (_isActive)
+        {
+            foreach (GameObject obj in _objs)
+            {
+                obj.SetActive(true);
+                yield return new WaitForSeconds(.25f);
+            }
+        }
+        else if (!_isLockedOn)
+        {
+            foreach (GameObject obj in _objs)
+            {
+                StopAllCoroutines();
+                obj.SetActive(false);
+            }
+
+            //yield return new WaitForSeconds(1f);
+
+            //if (!_isActive)
+            //{
+                
+            //}
+        }
+    }
+    #endregion
 }

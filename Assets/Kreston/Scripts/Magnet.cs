@@ -8,9 +8,9 @@ public class Magnet : MonoBehaviour
     #region Variables
     public enum Polarity
     {
-        Positive,
-        Negative,
-        Neutral
+        Positive = 1,
+        Neutral = 0,
+        Negative = -1
     }
     private Collider2D _col;
     public Polarity _polarity;
@@ -34,26 +34,13 @@ public class Magnet : MonoBehaviour
 
     private void Update()
     {
-        #region Magnetism Dampening For Jumping
-        if (GetComponent<movement>())
-        {
-            
-        }
-        #endregion
-
-
-        float currentRotationAngle = transform.eulerAngles.z;
-
         RaycastHit2D[] hitColliders = new RaycastHit2D[0];
         
+        // Sees what type of collider it is hitting [box : circle]
         if (_col is BoxCollider2D box)
-        {
-            hitColliders = Physics2D.BoxCastAll(transform.position + _castOffset, _boxSize * transform.localScale * _searchRadius, currentRotationAngle, Vector2.zero, 0, _magnetLayer);
-        }
+            hitColliders = Physics2D.BoxCastAll(transform.position + _castOffset, _boxSize * transform.localScale * _searchRadius, transform.eulerAngles.z, Vector2.zero, 0, _magnetLayer);
         else if (_col is CircleCollider2D circle)
-        {
             hitColliders = Physics2D.CircleCastAll(transform.position + _castOffset, circle.radius * transform.localScale.magnitude * _searchRadius, Vector2.zero, 0, _magnetLayer);
-        }
 
         _closestPoints.Clear();
 
@@ -61,8 +48,8 @@ public class Magnet : MonoBehaviour
         {
             float directionMult = 0;
 
-            if (hit.collider.TryGetComponent(out global::Polarity polarity))
-                directionMult = polarity.objPolarity == _polarity ? 1 : -1;
+            if (hit.collider.TryGetComponent(out Magnet magnet))
+                directionMult = (int)magnet._polarity * (int)_polarity;
             else
                 return;
 

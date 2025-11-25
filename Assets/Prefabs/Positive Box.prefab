@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1416422286725853494}
   - component: {fileID: 3943332734570873035}
   - component: {fileID: 7573506010715244419}
-  - component: {fileID: 5365302282477777506}
   - component: {fileID: -4520713987014614983}
   m_Layer: 8
   m_Name: Positive Box
@@ -164,19 +163,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &5365302282477777506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2287915157778400742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92d5add7ae5367b4cb43d73b41d13840, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objPolarity: 0
 --- !u!114 &-4520713987014614983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,7 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00abdef562cb8d04fbe0b07440b6c279, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _polarity: 0
+  _polarity: 1
   _searchRadius: 4
   _minStrength: 5
   _maxStrength: 12
