@@ -1,18 +1,10 @@
+using System.Xml;
+using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 
-public class Interactable : MonoBehaviour
+public interface Interactable 
 {
-    public void Update()
-    {
-                   
-    }
-
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (CompareTag("Player"))
-        {
-            Debug.Log("in range");
-        }
-
-    }
+    void interact();
+    bool caninteract();
+    void Chargetower();
 } 
