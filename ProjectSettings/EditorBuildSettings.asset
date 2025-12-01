@@ -14,6 +14,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/John/Scenes/Title Screen.unity
     guid: 6071c16f237eedc4fbe4aa6b6caa5944
+  - enabled: 1
+    path: Assets/John/Credit Scene/Main Credit.unity
+    guid: bc31b40e517367c4bb71a797d56b383e
+  - enabled: 1
+    path: Assets/John/Credit Scene/David Credit.unity
+    guid: c387bdf265d8f314791b6dc813ac9c8b
+  - enabled: 1
+    path: Assets/John/Credit Scene/John Credit.unity
+    guid: e96b805bdd1b537468f66e2b2119850e
+  - enabled: 1
+    path: Assets/John/Credit Scene/Kreston Credit.unity
+    guid: 150dcc5dd13c56349918933f9c376d94
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
