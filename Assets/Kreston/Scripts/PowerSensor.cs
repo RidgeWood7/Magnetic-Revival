@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
@@ -10,6 +11,7 @@ public class PowerSensor : MonoBehaviour
     #region Variables
     private bool _isActive;
     private bool _isLockedOn;
+    [SerializeField] private bool _reversed;
     #endregion
     #region List of Objs
     [SerializeField] private List<GameObject> _objs;
@@ -29,7 +31,12 @@ public class PowerSensor : MonoBehaviour
         _isActive = false;
     }
     #endregion
-    #region Chain Reaction (update)
+    #region Chain Reaction (update) (start)
+    private void Start()
+    {
+        if (_reversed)
+            _objs.Reverse();
+    }
     private void Update()
     {
         StartCoroutine(ChainReaction());
