@@ -7,7 +7,7 @@ public class Interacting : MonoBehaviour
     public GameObject interactIcon;
     private void Start()
     {
-       interactIcon.SetActive(false); 
+       interactIcon.SetActive(false);
     }
 
     public void OnInteract(InputAction.CallbackContext context)
@@ -15,6 +15,8 @@ public class Interacting : MonoBehaviour
         if (context.performed)
         {
             InRange?.interact();
+
+            Debug.Log("interact pressed");
         }
     }
 
@@ -24,6 +26,7 @@ public class Interacting : MonoBehaviour
         {
             InRange = interactable;
             interactIcon.SetActive(true);
+            Debug.Log("interactable");
         }
     }
 
