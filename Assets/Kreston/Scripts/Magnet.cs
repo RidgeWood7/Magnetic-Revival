@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 // NOTES: The Gizmos are not accurate when rotating a box
 
@@ -20,8 +21,17 @@ public class Magnet : MonoBehaviour
     private List<Vector2> _closestPoints = new();
     public Vector2 _boxSize;
     [SerializeField] private Vector3 _castOffset;
+
+    [SerializeField] private Material _positiveMat;
+    [SerializeField] private Material _negativeMat;
+    [SerializeField] private Material _neutralMat;
+    private ParticleSystemRenderer psr;
     #endregion
 
+    void Start()
+    {
+        psr = GetComponent<ParticleSystemRenderer>();
+    }
     private void Awake()
     {
         _col = GetComponent<Collider2D>();
@@ -34,6 +44,8 @@ public class Magnet : MonoBehaviour
 
     private void Update()
     {
+        SetPlayerColor();
+
         RaycastHit2D[] hitColliders = new RaycastHit2D[0];
 
         // Sees what type of collider it is hitting [box : circle]
@@ -62,6 +74,22 @@ public class Magnet : MonoBehaviour
             float invDist = Mathf.Lerp(_maxStrength, _minStrength, dist / _searchRadius);
 
             hit.collider.attachedRigidbody.AddForce((hit.transform.position - closestPoint).normalized * invDist * directionMult);
+        }
+    }
+
+    public void SetPlayerColor()
+    {
+        if ((int)_polarity == 1 && psr != null && _positiveMat != null && _negativeMat != null && _neutralMat != null) //positive
+        {
+            psr.material = _positiveMat;
+        }
+        else if ((int)_polarity == -1 && psr != null && _positiveMat != null && _negativeMat != null && _neutralMat != null) //negative
+        {
+            psr.material = _negativeMat;
+        }
+        else if ((int)_polarity == 0 && psr != null && _positiveMat != null && _negativeMat != null && _neutralMat != null) //neutral
+        {
+            psr.material = _neutralMat;
         }
     }
 

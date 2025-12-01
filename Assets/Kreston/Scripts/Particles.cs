@@ -1,16 +1,15 @@
 using UnityEngine;
 
 [RequireComponent(typeof(ParticleSystem))]
-public class Follow : MonoBehaviour
+public class Particles : MonoBehaviour
 {
-    [SerializeField] private GameObject _target;
-    [SerializeField] private float speed = 1.0f;
     private ParticleSystem _particles;
 
     private void Update()
     {
-        Magnet _parentScript = _target.GetComponent<Magnet>();
-        Collider2D _col = _target.GetComponent<Collider2D>();
+        Magnet _script = GetComponent<Magnet>();
+        Collider2D _col = GetComponent<Collider2D>();
+
         _particles = GetComponent<ParticleSystem>();
 
         ParticleSystem.MainModule size = _particles.main;
@@ -21,15 +20,7 @@ public class Follow : MonoBehaviour
         if (_col is BoxCollider2D box)
         {
             ParticleSystem.ShapeModule shape = _particles.shape;
-            shape.scale = _parentScript._boxSize * _parentScript._searchRadius;
+            shape.scale = _script._boxSize * _script._searchRadius;
         }
-
-
-        _target = GetComponentInParent<GameObject>();
-        
-        if (_target == null)
-            return;
-
-        transform.position = Vector3.Lerp(transform.position, _target.transform.position, speed);
     }
 }
