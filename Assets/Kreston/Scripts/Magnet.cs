@@ -109,4 +109,9 @@ public class Magnet : MonoBehaviour
             Gizmos.DrawWireSphere(point, 0.5f);
         }
     }
+
+    public void SetPolarity(Polarity polarity)
+    {
+        _polarity = polarity;
+    }
 }
