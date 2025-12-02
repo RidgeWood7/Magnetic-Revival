@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class Interacting : MonoBehaviour
 {
     private Interactable InRange = null; // closest interactable
     public GameObject interactIcon;
+    public UnityEvent Interact;
     private void Start()
     {
        interactIcon.SetActive(false);
@@ -14,8 +16,8 @@ public class Interacting : MonoBehaviour
     {
         if (context.performed)
         {
-            InRange?.interact();
-
+            //InRange?.interact();
+            Interact.Invoke();
             Debug.Log("interact pressed");
         }
     }

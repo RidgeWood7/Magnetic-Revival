@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class chest : MonoBehaviour, Interactable
 {
@@ -7,6 +8,7 @@ public class chest : MonoBehaviour, Interactable
     public GameObject itemPrefab;
     public Sprite openedSprite;
     public Sprite closedSprite;
+    public UnityEvent Interact;
 
     public void Start()
     {
@@ -16,8 +18,13 @@ public class chest : MonoBehaviour, Interactable
     public void interact()
     { 
         if (!caninteract())
+        {
+            Interact.Invoke();
             return;
-        OpenChest();
+        }
+        OpenChest ();
+            
+       
     }
 
     public bool caninteract()
@@ -27,26 +34,33 @@ public class chest : MonoBehaviour, Interactable
 
     public void OpenChest()
     {
-        SetOpened(true);
-        if (itemPrefab)
-        {
-            GameObject dropppedItem = Instantiate(itemPrefab, transform.position + Vector3.left, Quaternion.identity);
-            
-        }
+        throw new System.NotImplementedException();
+        //SetOpened(true);
+        //if (itemPrefab)
+        //{
+        //    GameObject dropppedItem = Instantiate(itemPrefab, transform.position + Vector3.left, Quaternion.identity);
+
+        //}
     }
 
     
-    public void SetOpened(bool Charged)
+    public void SetOpened(bool Opened)
     {
-        isOpened = Charged;
+        throw new System.NotImplementedException();
+        //isOpened = Opened;
 
-        if (isOpened) 
-        {
-            GetComponent<SpriteRenderer>().sprite = openedSprite;
-        }
-        else
-        {
-            GetComponent<SpriteRenderer>().sprite = closedSprite;
-        }
+        //if (isOpened) 
+        //{
+        //    GetComponent<SpriteRenderer>().sprite = openedSprite;
+        //}
+        //else
+        //{
+        //    GetComponent<SpriteRenderer>().sprite = closedSprite;
+        //}
+    }
+
+    public void positiveCharge()
+    {
+        throw new System.NotImplementedException();
     }
 }
