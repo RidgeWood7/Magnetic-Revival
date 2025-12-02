@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -110,8 +111,11 @@ public class Magnet : MonoBehaviour
         }
     }
 
-    public void SetPolarity(Polarity polarity)
+    public void SetPolarity(string name)
     {
-        _polarity = polarity;
+        if (Enum.TryParse(name, true, out Polarity polarity))
+        {
+            _polarity = polarity;
+        }
     }
 }
