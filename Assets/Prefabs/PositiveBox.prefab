@@ -210,6 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00abdef562cb8d04fbe0b07440b6c279, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _background: 0
   _polarity: 1
   _searchRadius: 4
   _minStrength: 5
@@ -4969,7 +4970,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 4f6acfe071347574d8c934646f3ab3a3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UIElements;
 
 // NOTES: The Gizmos are not accurate when rotating a box
@@ -8,6 +10,7 @@ using UnityEngine.UIElements;
 public class Magnet : MonoBehaviour
 {
     #region Variables
+    [SerializeField] private bool _background;
     public enum Polarity
     {
         Positive = 1,
@@ -23,6 +26,8 @@ public class Magnet : MonoBehaviour
     public Vector2 _boxSize;
     [SerializeField] private Vector3 _castOffset;
 
+    private MagnetParent _parentScript;
+
     [SerializeField] private Material _positiveMat;
     [SerializeField] private Material _negativeMat;
     [SerializeField] private Material _neutralMat;
@@ -32,6 +37,12 @@ public class Magnet : MonoBehaviour
     void Start()
     {
         psr = GetComponent<ParticleSystemRenderer>();
+
+        _parentScript = GetComponentInParent<MagnetParent>();
+        if (_parentScript != null)
+        {
+            Debug.Log("Parent Script: " + _parentScript.gameObject.name);
+        }
     }
     private void Awake()
     {
@@ -68,13 +79,27 @@ public class Magnet : MonoBehaviour
             else
                 return;
 
-                Vector3 closestPoint = _col.ClosestPoint(hit.transform.position);
+            Vector3 closestPoint = _col.ClosestPoint(hit.transform.position);
             _closestPoints.Add(closestPoint);
 
-            float dist = Vector2.Distance(hit.transform.position, closestPoint);
-            float invDist = Mathf.Lerp(_maxStrength, _minStrength, dist / _searchRadius);
-
-            hit.collider.attachedRigidbody.AddForce((hit.transform.position - closestPoint).normalized * invDist * directionMult);
+            if (!_background)
+            {
+                float dist = Vector2.Distance(hit.transform.position, closestPoint);
+                float invDist = Mathf.Lerp(_maxStrength, _minStrength, dist / _searchRadius);
+                hit.collider.attachedRigidbody.AddForce((hit.transform.position - closestPoint).normalized * invDist * directionMult);
+            }
+            else
+            {
+                {
+                    float dist = Vector2.Distance(hit.transform.position, transform.position);
+                    float invDist = Mathf.Lerp(_maxStrength, _minStrength, dist / _searchRadius);
+                    hit.collider.attachedRigidbody.AddForce((hit.transform.position - transform.position).normalized * invDist * directionMult);
+                    if (dist <= .9f && directionMult == 1)
+                    {
+                        _parentScript.Stick(_polarity);
+                    }
+                }
+            }
         }
     }
 
