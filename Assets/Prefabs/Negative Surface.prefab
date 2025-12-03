@@ -4984,6 +4984,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 444409173865870095}
+  - component: {fileID: 1127140723362535042}
   m_Layer: 0
   m_Name: Negative Surface
   m_TagString: Untagged
@@ -5007,3 +5008,23 @@ Transform:
   - {fileID: 7947492336035350433}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1127140723362535042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7746516698095216499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59bd24266884ad74a8ba84ca0ec98a0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whenStuck:
+    m_PersistentCalls:
+      m_Calls: []
+  afterStuck:
+    m_PersistentCalls:
+      m_Calls: []
+  _animationWait: 3
+  _coolingWait: 5
