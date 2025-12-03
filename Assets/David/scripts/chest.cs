@@ -22,7 +22,7 @@ public class chest : MonoBehaviour, Interactable
             Interact.Invoke();
             return;
         }
-        OpenChest ();
+        //OpenChest ();
             
        
     }
