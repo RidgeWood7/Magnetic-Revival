@@ -20,10 +20,12 @@ public class movement : MonoBehaviour
 
     public GameObject playerObj;
 
+    private Animator _animator;
+
     private void Awake()
     {
         Rb = GetComponent<Rigidbody2D>();
- 
+        _animator = GetComponent<Animator>();
     }
   
 
@@ -34,13 +36,20 @@ public class movement : MonoBehaviour
 
 
 
-    // Crontrolls the players horizontal movment
+    // Controls the players horizontal movment
     public void Move(InputAction.CallbackContext ctx)
     {
 
         _movement = ctx.ReadValue<Vector2>().x * speed;
 
+        if (_movement != 0)
+        {
+            _animator.SetFloat("Move", _movement);
+
+        }
+
     }
+
     // Controlls the players jump and makes sure the player is grounded
     public void Jump(InputAction.CallbackContext ctx)
     {
