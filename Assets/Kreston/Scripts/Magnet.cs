@@ -84,6 +84,8 @@ public class Magnet : MonoBehaviour
             Vector3 closestPoint = _col.ClosestPoint(hit.transform.position);
             _closestPoints.Add(closestPoint);
 
+            _anim.SetBool("isattached", _background);
+
             if (!_background)
             {
                 float dist = Vector2.Distance(hit.transform.position, closestPoint);

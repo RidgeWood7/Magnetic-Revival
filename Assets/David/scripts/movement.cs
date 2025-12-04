@@ -21,11 +21,13 @@ public class movement : MonoBehaviour
     public GameObject playerObj;
 
     private Animator _animator;
+    private SpriteRenderer _sprt;
 
     private void Awake()
     {
         Rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _sprt = GetComponent<SpriteRenderer>();
     }
   
 
@@ -45,7 +47,20 @@ public class movement : MonoBehaviour
         if (_movement != 0)
         {
             _animator.SetFloat("Move", _movement);
+            _animator.SetBool("ismoving", true);
 
+            if (_movement < 0)
+            {
+                _sprt.flipX = false;
+            }
+            else
+            {
+                _sprt.flipX = true;
+            }
+        }
+        else
+        {
+            _animator.SetBool("ismoving", false);
         }
 
     }
@@ -58,6 +73,7 @@ public class movement : MonoBehaviour
             if (IsGrounded())
             {
                 Rb.linearVelocityY = JumpHeight;
+                _animator.SetTrigger("jump");
             }
         }
     }
