@@ -9,6 +9,7 @@ public class chest : MonoBehaviour, Interactable
     public Sprite openedSprite;
     public Sprite closedSprite;
     public UnityEvent Interact;
+    [SerializeField] private AudioClip changePol;
 
     public void Start()
     {
@@ -17,8 +18,10 @@ public class chest : MonoBehaviour, Interactable
    
     public void interact()
     { 
+        
         if (!caninteract())
         {
+            SFXManager.Instance.PlaySoundFXClip(changePol, transform, 1f);
             Interact.Invoke();
             return;
         }
@@ -29,13 +32,14 @@ public class chest : MonoBehaviour, Interactable
 
     public bool caninteract()
     {
+        
         return !isOpened;
     }
 
     public void OpenChest()
     {
-        throw new System.NotImplementedException();
-        //SetOpened(true);
+       
+        SetOpened(true);
         //if (itemPrefab)
         //{
         //    GameObject dropppedItem = Instantiate(itemPrefab, transform.position + Vector3.left, Quaternion.identity);
@@ -46,17 +50,18 @@ public class chest : MonoBehaviour, Interactable
     
     public void SetOpened(bool Opened)
     {
-        throw new System.NotImplementedException();
-        //isOpened = Opened;
 
-        //if (isOpened) 
-        //{
-        //    GetComponent<SpriteRenderer>().sprite = openedSprite;
-        //}
-        //else
-        //{
-        //    GetComponent<SpriteRenderer>().sprite = closedSprite;
-        //}
+        isOpened = Opened;
+
+        if (isOpened)
+        {
+
+            GetComponent<SpriteRenderer>().sprite = openedSprite;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().sprite = closedSprite;
+        }
     }
 
     public void positiveCharge()
