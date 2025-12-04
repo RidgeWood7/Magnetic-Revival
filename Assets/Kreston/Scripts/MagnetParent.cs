@@ -20,7 +20,6 @@ public class MagnetParent : MonoBehaviour
     IEnumerator OnStick()
     {
         disableSim.Invoke(); // this will disable the simulating for the player's rb AND play the animation for getting stuck
-        yield return new WaitForSeconds(.01f);
         yield return new WaitForSeconds(_animationWait);
         afterStuck.Invoke(); // this will resimulate the player's rb AND will play the animation for unsticking AND will make the player neutral
     }
