@@ -158,7 +158,7 @@ MonoBehaviour:
   _magnetLayer:
     serializedVersion: 2
     m_Bits: 256
-  _boxSize: {x: 1.25, y: 1.25}
+  _boxSize: {x: 1, y: 1}
   _castOffset: {x: 0, y: 0, z: 0}
   _positiveMat: {fileID: 0}
   _negativeMat: {fileID: 0}
@@ -5021,9 +5021,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disableSim:
-    m_PersistentCalls:
-      m_Calls: []
-  disablePolarity:
     m_PersistentCalls:
       m_Calls: []
   afterStuck:
