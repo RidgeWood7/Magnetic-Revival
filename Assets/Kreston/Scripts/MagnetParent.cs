@@ -7,7 +7,6 @@ using UnityEngine.Events;
 public class MagnetParent : MonoBehaviour
 {
     public UnityEvent disableSim;
-    public UnityEvent disablePolarity;
     public UnityEvent afterStuck;
 
     [SerializeField] private float _animationWait;
@@ -22,7 +21,6 @@ public class MagnetParent : MonoBehaviour
     {
         disableSim.Invoke(); // this will disable the simulating for the player's rb AND play the animation for getting stuck
         yield return new WaitForSeconds(.01f);
-        disablePolarity.Invoke();
         yield return new WaitForSeconds(_animationWait);
         afterStuck.Invoke(); // this will resimulate the player's rb AND will play the animation for unsticking AND will make the player neutral
     }
