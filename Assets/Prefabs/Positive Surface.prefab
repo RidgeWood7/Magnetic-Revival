@@ -5020,11 +5020,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59bd24266884ad74a8ba84ca0ec98a0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whenStuck:
+  disableSim:
+    m_PersistentCalls:
+      m_Calls: []
+  disablePolarity:
     m_PersistentCalls:
       m_Calls: []
   afterStuck:
     m_PersistentCalls:
       m_Calls: []
   _animationWait: 3
-  _coolingWait: 5

@@ -87,6 +87,8 @@ public class Magnet : MonoBehaviour
                 float dist = Vector2.Distance(hit.transform.position, closestPoint);
                 float invDist = Mathf.Lerp(_maxStrength, _minStrength, dist / _searchRadius);
                 hit.collider.attachedRigidbody.AddForce((hit.transform.position - closestPoint).normalized * invDist * directionMult);
+
+                //RaycastHit2D[] contactedColliders = new RaycastHit2D[0];
             }
             else
             {
@@ -94,7 +96,7 @@ public class Magnet : MonoBehaviour
                     float dist = Vector2.Distance(hit.transform.position, transform.position);
                     float invDist = Mathf.Lerp(_maxStrength, _minStrength, dist / _searchRadius);
                     hit.collider.attachedRigidbody.AddForce((hit.transform.position - transform.position).normalized * invDist * directionMult);
-                    if (dist <= .9f && directionMult == 1)
+                    if (dist <= .4f && directionMult == -1)
                     {
                         _parentScript.Stick(_polarity);
                     }
