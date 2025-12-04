@@ -18,6 +18,7 @@ public class Magnet : MonoBehaviour
         Negative = -1
     }
     private Collider2D _col;
+    private Animator _anim;
     public Polarity _polarity;
     public float _searchRadius;
     [SerializeField] private float _minStrength, _maxStrength;
@@ -47,6 +48,7 @@ public class Magnet : MonoBehaviour
     private void Awake()
     {
         _col = GetComponent<Collider2D>();
+        _anim = GetComponent<Animator>();
     }
 
     private void OnValidate()
@@ -143,6 +145,7 @@ public class Magnet : MonoBehaviour
         if (Enum.TryParse(name, true, out Polarity polarity))
         {
             _polarity = polarity;
+            _anim.SetFloat("Polarity", (float)_polarity);
         }
     }
 }
