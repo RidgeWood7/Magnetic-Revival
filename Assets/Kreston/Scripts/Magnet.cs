@@ -84,7 +84,8 @@ public class Magnet : MonoBehaviour
             Vector3 closestPoint = _col.ClosestPoint(hit.transform.position);
             _closestPoints.Add(closestPoint);
 
-            _anim.SetBool("isattached", _background);
+            if (_anim != null)
+                _anim.SetBool("isattached", _background);
 
             if (!_background)
             {
@@ -147,7 +148,8 @@ public class Magnet : MonoBehaviour
         if (Enum.TryParse(name, true, out Polarity polarity))
         {
             _polarity = polarity;
-            _anim.SetFloat("Polarity", (float)_polarity);
+            if (_anim != null)
+                _anim.SetFloat("Polarity", (float)_polarity);
         }
     }
 }
