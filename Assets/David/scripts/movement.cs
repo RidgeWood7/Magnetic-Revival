@@ -22,7 +22,7 @@ public class movement : MonoBehaviour
 
     private Animator _animator;
     private SpriteRenderer _sprt;
-
+    public bool isfalling;
     private void Awake()
     {
         Rb = GetComponent<Rigidbody2D>();
@@ -33,7 +33,15 @@ public class movement : MonoBehaviour
 
     void Update()
     {
-        Rb.linearVelocityX = _movement;
+        if (Rb.linearVelocity.y < 0)
+        {
+            isfalling = true;
+        }
+        else
+        {
+            isfalling = false;
+        }
+            Rb.linearVelocityX = _movement;
     }
 
 
@@ -46,7 +54,7 @@ public class movement : MonoBehaviour
 
         if (_movement != 0)
         {
-            _animator.SetFloat("Move", _movement);
+            _animator.SetFloat("movement", _movement);
             _animator.SetBool("ismoving", true);
 
             if (_movement < 0)
