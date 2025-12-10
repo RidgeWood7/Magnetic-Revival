@@ -2,14 +2,14 @@ using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class polarityChanger : MonoBehaviour,Interactable
+public class polarityChanger : MonoBehaviour, Interactable
 {
-    public bool isOpened {  get; private set; }
+    public bool isOpened { get; private set; }
     public string Changerid { get; private set; }
     public Sprite openedSprite;
     public Sprite closedSprite;
     [SerializeField] private bool _isReusable;
-    
+
     [SerializeField] private AudioClip changePolSFX;
     public Magnet magnetscript;
 
@@ -18,14 +18,14 @@ public class polarityChanger : MonoBehaviour,Interactable
     {
         Changerid ??= globalHelper.GenarateUniqueID(gameObject);
     }
-   
+
     public void interact()
     {
         if (!caninteract() && !_isReusable)
         {
             return;
         }
-         OpenChest ();
+        OpenChest();
     }
 
     public bool caninteract()
@@ -40,11 +40,11 @@ public class polarityChanger : MonoBehaviour,Interactable
             magnetscript.SetPolarityEnum(_polarity);
     }
 
-    
+
     public void SetOpened(bool Opened)
     {
-
-        isOpened = Opened;
+        if (!_isReusable)
+            isOpened = Opened;
 
         if (isOpened)
         {
@@ -59,6 +59,4 @@ public class polarityChanger : MonoBehaviour,Interactable
                 GetComponent<SpriteRenderer>().sprite = closedSprite;
         }
     }
-
-   
 }
