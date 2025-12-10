@@ -1,18 +1,22 @@
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class chest : MonoBehaviour, Interactable
+public class polarityChanger : MonoBehaviour,Interactable
 {
     public bool isOpened {  get; private set; }
     public string Changerid { get; private set; }
     public GameObject itemPrefab;
     public Sprite openedSprite;
     public Sprite closedSprite;
-    public UnityEvent Interact;
-    [SerializeField] private AudioClip changePol;
+    
+    [SerializeField] private AudioClip changePolSFX;
+    public Magnet magnetscript;
 
+    [SerializeField] private Magnet.Polarity _polarity;
     public void Start()
     {
+        
         Changerid ??= globalHelper.GenarateUniqueID(gameObject);
     }
    
@@ -21,11 +25,11 @@ public class chest : MonoBehaviour, Interactable
         
         if (!caninteract())
         {
-            SFXManager.Instance.PlaySoundFXClip(changePol, transform, 1f);
-            Interact.Invoke();
+           
             return;
+           
         }
-        //OpenChest ();
+         OpenChest ();
             
        
     }
@@ -40,11 +44,7 @@ public class chest : MonoBehaviour, Interactable
     {
        
         SetOpened(true);
-        //if (itemPrefab)
-        //{
-        //    GameObject dropppedItem = Instantiate(itemPrefab, transform.position + Vector3.left, Quaternion.identity);
-
-        //}
+        magnetscript.SetPolarityEnum(_polarity);
     }
 
     
@@ -55,7 +55,7 @@ public class chest : MonoBehaviour, Interactable
 
         if (isOpened)
         {
-
+            AudioSource.PlayClipAtPoint(changePolSFX, transform.position, 1f);
             GetComponent<SpriteRenderer>().sprite = openedSprite;
         }
         else
@@ -64,8 +64,5 @@ public class chest : MonoBehaviour, Interactable
         }
     }
 
-    public void positiveCharge()
-    {
-        throw new System.NotImplementedException();
-    }
+   
 }

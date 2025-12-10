@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class pauseMenu : MonoBehaviour
 {
+    public EventSystem eventSystem;
     private bool isPaused = false;
     public GameObject pauseScreen;
     void Update()
@@ -12,10 +14,12 @@ public class pauseMenu : MonoBehaviour
             if (isPaused)
             {
                 ResumeGame();
+                
             }
             else
             {
                 PauseGame();
+                eventSystem.SetSelectedGameObject(null);
             }
     }
 
@@ -34,6 +38,7 @@ public class pauseMenu : MonoBehaviour
 
     public void LoadMenu()
     {
+
         Time.timeScale = 1f;
         SceneManager.LoadScene("John Testing");
     }
@@ -47,4 +52,5 @@ public class pauseMenu : MonoBehaviour
     {
         Application.Quit();
     }
+    
 }

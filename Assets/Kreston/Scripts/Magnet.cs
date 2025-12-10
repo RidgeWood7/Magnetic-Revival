@@ -152,4 +152,12 @@ public class Magnet : MonoBehaviour
                 _anim.SetFloat("Polarity", (float)_polarity);
         }
     }
+
+    public void SetPolarityEnum(Polarity polarity)
+    {
+        _polarity = polarity;
+        
+        if (_anim != null)
+            _anim.SetFloat("Polarity", (float)_polarity);
+    }
 }

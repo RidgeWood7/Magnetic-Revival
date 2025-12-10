@@ -102,25 +102,7 @@ public class movement : MonoBehaviour
 
 
 
-    public void SavePlayer()
-    {
-        saveSystem.SavePlayer(this);
-        Debug.Log("saving...");
-
-
-    }
-    public void loadPlayer()
-    {
-
-        playerData data = saveSystem.loadPlayer();
-
-        Vector2 position;
-
-        position.x = data.position[0];
-        position.y = data.position[1];
-        transform.position = position;
-        Debug.Log("loading...");
-    }
+   
     
 }
 
