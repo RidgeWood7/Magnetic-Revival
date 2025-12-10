@@ -6,9 +6,9 @@ public class polarityChanger : MonoBehaviour,Interactable
 {
     public bool isOpened {  get; private set; }
     public string Changerid { get; private set; }
-    public GameObject itemPrefab;
     public Sprite openedSprite;
     public Sprite closedSprite;
+    [SerializeField] private bool _isReusable;
     
     [SerializeField] private AudioClip changePolSFX;
     public Magnet magnetscript;
@@ -16,35 +16,28 @@ public class polarityChanger : MonoBehaviour,Interactable
     [SerializeField] private Magnet.Polarity _polarity;
     public void Start()
     {
-        
         Changerid ??= globalHelper.GenarateUniqueID(gameObject);
     }
    
     public void interact()
-    { 
-        
-        if (!caninteract())
+    {
+        if (!caninteract() && !_isReusable)
         {
-           
             return;
-           
         }
          OpenChest ();
-            
-       
     }
 
     public bool caninteract()
     {
-        
         return !isOpened;
     }
 
     public void OpenChest()
     {
-       
         SetOpened(true);
-        magnetscript.SetPolarityEnum(_polarity);
+        if (magnetscript != null)
+            magnetscript.SetPolarityEnum(_polarity);
     }
 
     
@@ -55,12 +48,15 @@ public class polarityChanger : MonoBehaviour,Interactable
 
         if (isOpened)
         {
-            AudioSource.PlayClipAtPoint(changePolSFX, transform.position, 1f);
-            GetComponent<SpriteRenderer>().sprite = openedSprite;
+            if (changePolSFX != null)
+                AudioSource.PlayClipAtPoint(changePolSFX, transform.position, 1f);
+            if (openedSprite != null)
+                GetComponent<SpriteRenderer>().sprite = openedSprite;
         }
         else
         {
-            GetComponent<SpriteRenderer>().sprite = closedSprite;
+            if (closedSprite != null)
+                GetComponent<SpriteRenderer>().sprite = closedSprite;
         }
     }
 
