@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class movement : MonoBehaviour
 {
-
+    public bool isattached = false;
     public float speed;
 
     public float JumpHeight;
@@ -96,6 +96,8 @@ public class movement : MonoBehaviour
         RaycastHit2D hit = Physics2D.BoxCast(transform.position, boxsize, 0, -transform.up, castDistance, groundLayer);
 
         return hit.collider;
+
+
     }
 
 
@@ -104,11 +106,39 @@ public class movement : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(transform.position + Vector3.down * castDistance, boxsize);
     }
+    void OnCollisionEnter(Collision collision)
+    {
+        // Optional: Check the tag of the object collided with
+        if (collision.gameObject.CompareTag("AttachableObject"))
+        {
+            isattached = true;
+            Debug.Log("Player attached to " + collision.gameObject.name);
+        }
+    }
+
+    // Called every frame while the player is touching a collider
+    void OnCollisionStay(Collision collisionInfo)
+    {
+        // Keep the flag true while touching
+        if (collisionInfo.gameObject.CompareTag("AttachableObject"))
+        {
+            isattached = true;
+        }
+    }
+
+    // Called when the player stops touching a collider
+    void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("AttachableObject"))
+        {
+            isattached = false;
+            Debug.Log("Player detached from " + collision.gameObject.name);
+        }
+    }
 
 
 
-   
-    
+
 }
 
 
