@@ -3,37 +3,41 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEditor;
 using System.Runtime.Serialization;
+using System.Collections;
+using System.Collections.Generic;
 public class saveSystem : MonoBehaviour
 {
-    public static void SavePlayer(movement player)
+    private polarityChanger[] Polarity;
+    private string saveLocation;
+    void Start()
     {
-        BinaryFormatter bf = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/player.json";
-        FileStream stream = new FileStream(path, FileMode.Create);
+        saveLocation = Path.Combine(Application.persistentDataPath, "saveData.json");
 
-        playerData data = new playerData(player); 
-
-        bf.Serialize(stream, data);
-        stream.Close();
+        LoadGame();
     }
 
-    public static playerData loadPlayer()
+    public void SaveGame()
     {
-        string path = Application.persistentDataPath + "/player.json";
-        if (File.Exists(path))
+        saveData SaveData = new saveData
         {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(path, FileMode.Open);
+            playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position
+        };
 
-           playerData data = formatter.Deserialize(stream) as playerData;
-           stream.Close();
-           return data;
+        File.WriteAllText(saveLocation,JsonUtility.ToJson(SaveData));
+    }
+
+
+    public void LoadGame()
+    {
+        if (File.Exists(saveLocation))
+        {
+           saveData saveData = JsonUtility.FromJson<saveData>(File.ReadAllText(saveLocation));
+
+           GameObject.FindGameObjectWithTag("Player").transform.position = saveData.playerPosition;
         }
         else
         {
-            Debug.LogError("Save file not found in"+path);
-            return null;
+            SaveGame();
         }
     }
-
 }

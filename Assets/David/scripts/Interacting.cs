@@ -6,7 +6,7 @@ public class Interacting : MonoBehaviour
 {
     private Interactable InRange = null; // closest interactable
     public GameObject interactIcon;
-    public UnityEvent Interact;
+    
     private void Start()
     {
        interactIcon.SetActive(false);
@@ -16,8 +16,7 @@ public class Interacting : MonoBehaviour
     {
         if (context.performed)
         {
-            //InRange?.interact();
-            Interact.Invoke();
+            InRange?.interact();   
             Debug.Log("interact pressed");
         }
     }
@@ -31,7 +30,7 @@ public class Interacting : MonoBehaviour
             Debug.Log("interactable");
         }
     }
-
+    
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.TryGetComponent(out Interactable interactable) && interactable == InRange)
