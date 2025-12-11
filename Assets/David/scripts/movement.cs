@@ -41,6 +41,10 @@ public class movement : MonoBehaviour
         {
             isfalling = false;
         }
+
+        _animator.SetBool("isGrounded", IsGrounded());
+        _animator.SetBool("isfalling",isfalling);
+
             Rb.linearVelocityX = _movement;
     }
 
@@ -90,6 +94,7 @@ public class movement : MonoBehaviour
     public bool IsGrounded()
     {
         RaycastHit2D hit = Physics2D.BoxCast(transform.position, boxsize, 0, -transform.up, castDistance, groundLayer);
+
         return hit.collider;
     }
 
