@@ -29,7 +29,7 @@ public class movement : MonoBehaviour
         _animator = GetComponent<Animator>();
         _sprt = GetComponent<SpriteRenderer>();
     }
-  
+
 
     void Update()
     {
@@ -41,11 +41,12 @@ public class movement : MonoBehaviour
         {
             isfalling = false;
         }
+        if (_animator != null)
+            _animator.SetBool("isfalling", isfalling);
+        if (_animator != null)
+            _animator.SetBool("isGrounded", IsGrounded());
 
-        _animator.SetBool("isGrounded", IsGrounded());
-        _animator.SetBool("isfalling",isfalling);
-
-            Rb.linearVelocityX = _movement;
+        Rb.linearVelocityX = _movement;
     }
 
 
@@ -58,8 +59,10 @@ public class movement : MonoBehaviour
 
         if (_movement != 0)
         {
-            _animator.SetFloat("movement", _movement);
-            _animator.SetBool("ismoving", true);
+            if (_animator != null)
+                _animator.SetFloat("movement", _movement);
+            if (_animator != null)
+                _animator.SetBool("ismoving", true);
 
             if (_movement < 0)
             {
@@ -72,7 +75,8 @@ public class movement : MonoBehaviour
         }
         else
         {
-            _animator.SetBool("ismoving", false);
+            if (_animator != null)
+                _animator.SetBool("ismoving", false);
         }
 
     }
@@ -85,7 +89,8 @@ public class movement : MonoBehaviour
             if (IsGrounded())
             {
                 Rb.linearVelocityY = JumpHeight;
-                _animator.SetTrigger("jump");
+                if (_animator != null)
+                    _animator.SetTrigger("jump");
             }
         }
     }

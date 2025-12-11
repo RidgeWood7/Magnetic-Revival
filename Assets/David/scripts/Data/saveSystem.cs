@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
+
 using UnityEditor;
 using System.Runtime.Serialization;
 using System.Collections;
@@ -32,7 +32,6 @@ public class saveSystem : MonoBehaviour
         {
             playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position,
             polaritySavedata = GetPolarityChangersState(),
-
             
         };
 
