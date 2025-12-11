@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3135257986830833158}
   m_Layer: 0
-  m_Name: NewPlayer
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,7 +54,7 @@ GameObject:
   - component: {fileID: 3104201523718262187}
   m_Layer: 8
   m_Name: player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5273,7 +5273,7 @@ MonoBehaviour:
   m_InstanceId: 0
   m_ShadowShape2DComponent: {fileID: 7436737571064453113}
   m_ShadowShape2DProvider:
-    rid: 8495477969405870083
+    rid: 8495478014319001674
   m_ShadowCastingSource: 2
   m_ShadowMesh:
     m_Mesh: {fileID: 0}
@@ -5293,7 +5293,7 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 8495477969405870083
+    - rid: 8495478014319001674
       type: {class: ShadowShape2DProvider_SpriteRenderer, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.2D.Runtime}
       data: 
 --- !u!1 &6362212307511167718
