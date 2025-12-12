@@ -7,6 +7,7 @@ using UnityEngine.Rendering.Universal;
 public class TempRemoval : MonoBehaviour
 {
     [SerializeField] private List<GameObject> objectsToDisable = new List<GameObject>();
+    [SerializeField] private List<GameObject> objectsToEnable = new List<GameObject>();
 
     private void Awake()
     {
@@ -15,6 +16,13 @@ public class TempRemoval : MonoBehaviour
             if (obj != null)
             {
                 obj.SetActive(false);
+            }
+        }
+        foreach (var obj in objectsToEnable)
+        {
+            if (obj != null)
+            {
+                obj.SetActive(true);
             }
         }
     }
