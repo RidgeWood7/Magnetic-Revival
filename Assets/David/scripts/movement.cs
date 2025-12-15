@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class movement : MonoBehaviour
 {
-    public bool isattached = false;
+    public bool isattached = true;
     public float speed;
 
     public float JumpHeight;
@@ -36,13 +36,17 @@ public class movement : MonoBehaviour
         if (Rb.linearVelocity.y < 0)
         {
             isfalling = true;
+            isattached = true;
         }
         else
         {
             isfalling = false;
+            isattached = false;
         }
         if (_animator != null)
             _animator.SetBool("isfalling", isfalling);
+        if (_animator != null)
+            _animator.SetBool("isattached", isattached);
         if (_animator != null)
             _animator.SetBool("isGrounded", IsGrounded());
 
@@ -111,37 +115,7 @@ public class movement : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(transform.position + Vector3.down * castDistance, boxsize);
     }
-    void OnCollisionEnter(Collision collision)
-    {
-        // Optional: Check the tag of the object collided with
-        if (collision.gameObject.CompareTag("AttachableObject"))
-        {
-            isattached = true;
-            Debug.Log("Player attached to " + collision.gameObject.name);
-        }
-    }
-
-    // Called every frame while the player is touching a collider
-    void OnCollisionStay(Collision collisionInfo)
-    {
-        // Keep the flag true while touching
-        if (collisionInfo.gameObject.CompareTag("AttachableObject"))
-        {
-            isattached = true;
-        }
-    }
-
-    // Called when the player stops touching a collider
-    void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("AttachableObject"))
-        {
-            isattached = false;
-            Debug.Log("Player detached from " + collision.gameObject.name);
-        }
-    }
-
-
+    
 
 
 }
