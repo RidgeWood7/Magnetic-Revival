@@ -13,9 +13,9 @@ public class Particles : MonoBehaviour
         _particles = GetComponent<ParticleSystem>();
 
         ParticleSystem.MainModule size = _particles.main;
-        size.startSizeXMultiplier = .05f / transform.localScale.x;
-        size.startSizeYMultiplier = .05f / transform.localScale.y;
-        size.startSizeZMultiplier = .05f / transform.localScale.z;
+        size.startSizeXMultiplier = .12f / transform.localScale.x;
+        size.startSizeYMultiplier = .12f / transform.localScale.y;
+        size.startSizeZMultiplier = .12f / transform.localScale.z;
 
         if (_col is BoxCollider2D box)
         {

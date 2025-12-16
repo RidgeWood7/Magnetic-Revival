@@ -9,7 +9,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void OnClickPlay()
     {
-        SceneManager.LoadScene("MainLevel");
+        SceneManager.LoadScene("Main Scene");
 
     }
 
