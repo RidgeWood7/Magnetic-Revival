@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class movement : MonoBehaviour
 {
     public bool isattached = true;
+    public bool isDetached = false;
     public float speed;
 
     public float JumpHeight;
@@ -36,17 +37,15 @@ public class movement : MonoBehaviour
         if (Rb.linearVelocity.y < 0)
         {
             isfalling = true;
-            isattached = true;
+            
         }
         else
         {
             isfalling = false;
-            isattached = false;
+           
         }
         if (_animator != null)
             _animator.SetBool("isfalling", isfalling);
-        if (_animator != null)
-            _animator.SetBool("isattached", isattached);
         if (_animator != null)
             _animator.SetBool("isGrounded", IsGrounded());
 
