@@ -6,16 +6,16 @@ public class MainMenuManager : MonoBehaviour
   
     public void OnClickPlay()
     {
-        SceneManager.LoadScene("Main Level");
+        SceneManager.LoadScene("Main Scene");
 
     }
 
 
 
 
-    public void OnClickQuit()
+    public void OnClickCredit()
     {
-        SceneManager.LoadScene("Title Screen");
+        SceneManager.LoadScene("Credit Scene");
     }
 
   
