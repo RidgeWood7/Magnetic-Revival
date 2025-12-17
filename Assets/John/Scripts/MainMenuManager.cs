@@ -3,13 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
-    public GameObject OptionsMenu;
-
-    public GameObject PauseMenu;
-
+  
     public void OnClickPlay()
     {
-        SceneManager.LoadScene("Main Scene");
+        SceneManager.LoadScene("Main Level");
 
     }
 
@@ -18,13 +15,9 @@ public class MainMenuManager : MonoBehaviour
 
     public void OnClickQuit()
     {
-        SceneManager.LoadScene("John Testing");
+        SceneManager.LoadScene("Title Screen");
     }
 
-    public void OnClickPause()
-    {
-        PauseMenu.SetActive(true);
-    }
-
+  
 
 }
