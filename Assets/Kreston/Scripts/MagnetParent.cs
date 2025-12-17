@@ -6,6 +6,8 @@ using UnityEngine.Events;
 
 public class MagnetParent : MonoBehaviour
 {
+
+    public static bool isattached = false;
     public UnityEvent disableSim;
     public UnityEvent afterStuck;
 
@@ -16,11 +18,18 @@ public class MagnetParent : MonoBehaviour
     {
         StartCoroutine(OnStick());
     }
-
+    public void Start()
+    {
+        isattached = false;
+    }
     IEnumerator OnStick()
     {
+        isattached = true;
+        GameObject.FindWithTag("Player").GetComponentInChildren<Animator>().SetBool("isAttached", true);
         disableSim.Invoke(); // this will disable the simulating for the player's rb AND play the animation for getting stuck
         yield return new WaitForSeconds(_animationWait);
+        isattached = false;
+        GameObject.FindWithTag("Player").GetComponentInChildren<Animator>().SetBool("isAttached", false);
         afterStuck.Invoke(); // this will resimulate the player's rb AND will play the animation for unsticking AND will make the player neutral
     }
 }

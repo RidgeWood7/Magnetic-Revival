@@ -1,15 +1,21 @@
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class movement : MonoBehaviour
 {
-    public bool isattached = true;
-    public bool isDetached = false;
+ 
+    public bool isattached;
+
+    public bool isDetached;
+
+    public float horizontal;
+
     public float speed;
 
     public float JumpHeight;
 
-    private Rigidbody2D Rb;
+   private  Rigidbody2D rb;
 
     private float _movement;
 
@@ -22,8 +28,24 @@ public class movement : MonoBehaviour
     public GameObject playerObj;
 
     private Animator _animator;
+
     private SpriteRenderer _sprt;
+
     public bool isfalling;
+
+    private MagnetParent attached;
+
+    public bool at;
+
+    private float _movementSpeed;
+
+    [SerializeField] private LayerMask wallLayer;
+
+    [SerializeField] private Transform wallCheck;
+
+   private Rigidbody2D Rb;
+
+
     private void Awake()
     {
         Rb = GetComponent<Rigidbody2D>();
@@ -34,22 +56,36 @@ public class movement : MonoBehaviour
 
     void Update()
     {
+        at = MagnetParent.isattached;
+
+        if (at)
+        {
+            isattached = true;
+            isDetached = false;
+
+        }
+        else
+        {
+            isattached = false;
+            isDetached = true;
+        }
+
         if (Rb.linearVelocity.y < 0)
         {
             isfalling = true;
-            
         }
         else
         {
             isfalling = false;
-           
         }
         if (_animator != null)
             _animator.SetBool("isfalling", isfalling);
-        if (_animator != null)
+        
             _animator.SetBool("isGrounded", IsGrounded());
 
         Rb.linearVelocityX = _movement;
+
+       
     }
 
 
@@ -114,6 +150,13 @@ public class movement : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(transform.position + Vector3.down * castDistance, boxsize);
     }
+
+    private Rigidbody2D GetRb()
+    {
+        return Rb;
+    }
+
+   
     
 
 
