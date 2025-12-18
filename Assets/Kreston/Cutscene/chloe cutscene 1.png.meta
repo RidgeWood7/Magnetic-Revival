@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      chloe cutscene 1_0: -6730305479541260183
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
