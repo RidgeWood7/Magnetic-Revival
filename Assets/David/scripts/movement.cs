@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class movement : MonoBehaviour
 {
- 
+
     public bool isattached;
 
     public bool isDetached;
@@ -15,7 +15,7 @@ public class movement : MonoBehaviour
 
     public float JumpHeight;
 
-   private  Rigidbody2D rb;
+    private Rigidbody2D rb;
 
     private float _movement;
 
@@ -43,7 +43,7 @@ public class movement : MonoBehaviour
 
     [SerializeField] private Transform wallCheck;
 
-   private Rigidbody2D Rb;
+    private Rigidbody2D Rb;
 
 
     private void Awake()
@@ -52,7 +52,6 @@ public class movement : MonoBehaviour
         _animator = GetComponent<Animator>();
         _sprt = GetComponent<SpriteRenderer>();
     }
-
 
     void Update()
     {
@@ -80,12 +79,10 @@ public class movement : MonoBehaviour
         }
         if (_animator != null)
             _animator.SetBool("isfalling", isfalling);
-        
-            _animator.SetBool("isGrounded", IsGrounded());
+
+        _animator.SetBool("isGrounded", IsGrounded());
 
         Rb.linearVelocityX = _movement;
-
-       
     }
 
 
@@ -156,8 +153,8 @@ public class movement : MonoBehaviour
         return Rb;
     }
 
-   
-    
+
+
 
 
 }
