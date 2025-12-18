@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      cerese credit_0: -3513710905697276356
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
