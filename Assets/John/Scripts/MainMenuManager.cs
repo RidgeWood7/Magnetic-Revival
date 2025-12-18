@@ -6,7 +6,7 @@ public class MainMenuManager : MonoBehaviour
   
     public void OnClickPlay()
     {
-        SceneManager.LoadScene("Main Scene");
+        SceneManager.LoadScene("Cutscene");
 
     }
 
