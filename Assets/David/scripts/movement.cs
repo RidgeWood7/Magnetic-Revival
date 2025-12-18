@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -28,6 +29,10 @@ public class movement : MonoBehaviour
 
     public GameObject playerObj;
 
+    public Vector2 leftBox;
+
+    public Vector2 rightBox;
+
     //animation variables
     private Animator _animator;
 
@@ -39,18 +44,18 @@ public class movement : MonoBehaviour
 
     public bool at;
 
-    private Vector2 wallForce;
+
 
 
     // Wall detection variables
     public Vector2 boxsize2;
 
     public float castDistance2;
-    
+
     public LayerMask wallLayer;
 
     //Rigidbody2D component
-    
+
 
 
     private void Awake()
@@ -62,6 +67,9 @@ public class movement : MonoBehaviour
 
     void Update()
     {
+
+        
+        
         at = MagnetParent.isattached;
 
         if (at)
@@ -90,6 +98,15 @@ public class movement : MonoBehaviour
         _animator.SetBool("isGrounded", IsGrounded());
 
         Rb.linearVelocityX = _movement;
+
+        if(Rb.linearVelocityX < 0 && IsWallLeft())
+        {
+            Rb.linearVelocityX = 0;
+        }
+        if(Rb.linearVelocityX > 0 && IsWallRight())
+        {
+            Rb.linearVelocityX = 0;
+        }
     }
 
 
@@ -97,6 +114,7 @@ public class movement : MonoBehaviour
     // Controls the players horizontal movment
     public void Move(InputAction.CallbackContext ctx)
     {
+
 
         _movement = ctx.ReadValue<Vector2>().x * speed;
 
@@ -121,6 +139,9 @@ public class movement : MonoBehaviour
             if (_animator != null)
                 _animator.SetBool("ismoving", false);
         }
+
+
+
 
     }
 
@@ -155,23 +176,23 @@ public class movement : MonoBehaviour
         Gizmos.DrawWireCube(transform.position + Vector3.down * castDistance, boxsize);
     }
 
-  public bool IsOnWall()
+    public bool IsWallLeft()
     {
-        RaycastHit2D hit = Physics2D.BoxCast(transform.position, boxsize2, 0, transform.right, castDistance2, wallLayer);
-        if (IsOnWall())
-        {
-            
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        RaycastHit2D hit = Physics2D.BoxCast(transform.position + (Vector3)leftBox, boxsize2, 0, Vector2.zero, 0, wallLayer);
+        return hit.collider;
     }
+    public bool IsWallRight()
+    {
+        RaycastHit2D hit = Physics2D.BoxCast(transform.position + (Vector3)rightBox, boxsize2, 0, Vector2.zero, 0, wallLayer);
+        return hit.collider;
+    }
+
+
     private void OnDrawGizmosSelected()
     {
-       Gizmos.color = Color.blue;
-       Gizmos.DrawWireCube(transform.position + Vector3.right * castDistance2, boxsize2);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(transform.position + (Vector3)leftBox, boxsize2);
+        Gizmos.DrawWireCube(transform.position + (Vector3)rightBox, boxsize2);
     }
-   
+
 }
