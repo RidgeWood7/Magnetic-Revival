@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ceresecutscene2_0: 5258864544243742805
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

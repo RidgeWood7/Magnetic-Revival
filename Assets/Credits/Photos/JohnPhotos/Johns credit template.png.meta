@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a282661454401414288148271b7b7ca8
+guid: a3cd9b0964ee2784f9fb227de613b3c0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7449885181266147676
-    second: chloe cutscene 4_0
+      213: -168112178924192850
+    second: Johns credit template_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,7 +126,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: chloe cutscene 4_0
+      name: Johns credit template_0
       rect:
         serializedVersion: 2
         x: 0
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4a64f2916e0bc9890800000000000000
-      internalID: -7449885181266147676
+      spriteID: eab7ecc2ddebaadf0800000000000000
+      internalID: -168112178924192850
       vertices: []
       indices: 
       edges: []
@@ -160,8 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      chloe cutscene 4_0: -7449885181266147676
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
