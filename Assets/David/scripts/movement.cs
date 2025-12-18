@@ -1,4 +1,3 @@
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,14 +10,16 @@ public class movement : MonoBehaviour
 
     public float horizontal;
 
+    // Movement 
     public float speed;
 
     public float JumpHeight;
 
-    private Rigidbody2D rb;
+    private Rigidbody2D Rb;
 
     private float _movement;
 
+    // Ground detection 
     public Vector2 boxsize;
 
     public float castDistance;
@@ -27,6 +28,7 @@ public class movement : MonoBehaviour
 
     public GameObject playerObj;
 
+    //animation variables
     private Animator _animator;
 
     private SpriteRenderer _sprt;
@@ -37,13 +39,18 @@ public class movement : MonoBehaviour
 
     public bool at;
 
-    private float _movementSpeed;
+    private Vector2 wallForce;
 
-    [SerializeField] private LayerMask wallLayer;
 
-    [SerializeField] private Transform wallCheck;
+    // Wall detection variables
+    public Vector2 boxsize2;
 
-    private Rigidbody2D Rb;
+    public float castDistance2;
+    
+    public LayerMask wallLayer;
+
+    //Rigidbody2D component
+    
 
 
     private void Awake()
@@ -148,16 +155,23 @@ public class movement : MonoBehaviour
         Gizmos.DrawWireCube(transform.position + Vector3.down * castDistance, boxsize);
     }
 
-    private Rigidbody2D GetRb()
+  public bool IsOnWall()
     {
-        return Rb;
+        RaycastHit2D hit = Physics2D.BoxCast(transform.position, boxsize2, 0, transform.right, castDistance2, wallLayer);
+        if (IsOnWall())
+        {
+            
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
-
-
-
-
-
+    private void OnDrawGizmosSelected()
+    {
+       Gizmos.color = Color.blue;
+       Gizmos.DrawWireCube(transform.position + Vector3.right * castDistance2, boxsize2);
+    }
+   
 }
-
-
-

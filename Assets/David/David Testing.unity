@@ -208,12 +208,11 @@ Transform:
   m_GameObject: {fileID: 236023215}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: -0.99, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2125703964}
-  - {fileID: 651803723}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &651803722
@@ -249,7 +248,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2072935478}
-  m_Father: {fileID: 236023218}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -268,7 +267,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b2f30473bb02aa458e03b505681f318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventSystem: {fileID: 0}
   pauseScreen: {fileID: 2072935477}
 --- !u!114 &651803725
 MonoBehaviour:
@@ -299,7 +297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -319,9 +317,9 @@ Canvas:
   m_GameObject: {fileID: 651803722}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 2125703963}
-  m_PlaneDistance: 1
+  m_PlaneDistance: 0.49
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -914,7 +912,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8220544713117035917, guid: e0832309c1107e2438d2bd54198a16c8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.99
       objectReference: {fileID: 0}
     - target: {fileID: 8220544713117035917, guid: e0832309c1107e2438d2bd54198a16c8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1419,6 +1417,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1514701643268011693, guid: ea3b956b82f3add419e1ed14e1006b9c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1514701643268011693, guid: ea3b956b82f3add419e1ed14e1006b9c, type: 3}
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
@@ -1492,7 +1494,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4182599063286243951, guid: ea3b956b82f3add419e1ed14e1006b9c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5470782006308820750, guid: ea3b956b82f3add419e1ed14e1006b9c, type: 3}
       propertyPath: m_UpdateMode
@@ -1547,6 +1549,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 651803723}
   - {fileID: 236023218}
   - {fileID: 1873460577}
   - {fileID: 1566580046}
