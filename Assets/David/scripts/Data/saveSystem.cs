@@ -10,7 +10,9 @@ public class saveSystem : MonoBehaviour
 {
     private polarityChanger[] Polarity;
     private string saveLocation;
-    
+    private string saveCameraLocation;
+
+
     void Start()
     {
         InitializeComponents();
@@ -32,11 +34,35 @@ public class saveSystem : MonoBehaviour
         {
             playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position,
             polaritySavedata = GetPolarityChangersState(),
-            
+            playerPolarity = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Magnet>()._polarity,
         };
 
         File.WriteAllText(saveLocation,JsonUtility.ToJson(SaveData));
     }
+
+    
+
+    public void LoadGame()
+    {
+
+        if (File.Exists(saveLocation))
+        {
+           saveData saveData = JsonUtility.FromJson<saveData>(File.ReadAllText(saveLocation));
+
+           GameObject.FindGameObjectWithTag("Player").transform.position = saveData.playerPosition;
+
+           GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Magnet>()._polarity = saveData.playerPolarity;
+
+            
+
+            LoadPolartityState(saveData.polaritySavedata);
+        }
+        else
+        {
+            SaveGame();
+        }
+    }
+
 
     private List<polaritySavedata> GetPolarityChangersState()
     {
@@ -56,23 +82,6 @@ public class saveSystem : MonoBehaviour
         return polarityStates;
     }
 
-    public void LoadGame()
-    {
-
-        if (File.Exists(saveLocation))
-        {
-           saveData saveData = JsonUtility.FromJson<saveData>(File.ReadAllText(saveLocation));
-
-           GameObject.FindGameObjectWithTag("Player").transform.position = saveData.playerPosition;
-
-
-            LoadPolartityState(saveData.polaritySavedata);
-        }
-        else
-        {
-            SaveGame();
-        }
-    }
 
     private void LoadPolartityState(List<polaritySavedata> polarityStates)
     {
