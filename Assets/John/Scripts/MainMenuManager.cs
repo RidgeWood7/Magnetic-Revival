@@ -9,15 +9,8 @@ public class MainMenuManager : MonoBehaviour
         SceneManager.LoadScene("Cutscene");
 
     }
-
-
-
-
     public void OnClickCredit()
     {
-        SceneManager.LoadScene("Credit Scene");
+        SceneManager.LoadScene("Credits Cerese");
     }
-
-  
-
 }
